@@ -3,7 +3,7 @@ TBR Status by Team BlueRidge
 TBR Status is a small, simple app which tells the status of Team BlueRidge's services through an app.
 
 To update service status
-====
+----------------
 The app fetches the [tbrstatus.txt file](https://github.com/teamblueridge/TBRStatus/blob/master/tbrstatus.txt) and then sets the status according to line of file.
 
 * Line 1 corresponds to Main site
