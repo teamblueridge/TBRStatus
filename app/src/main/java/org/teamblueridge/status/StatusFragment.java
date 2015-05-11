@@ -43,7 +43,7 @@ public class StatusFragment extends Fragment {
 
         File file = new File("/sdcard/tbrstatus.txt");
 
-        if (file.exists()) {
+        if (file.length() != 0) {
 
             try {
                 main.setText(FileUtils.readLines(file).get(0));
