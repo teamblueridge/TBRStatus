@@ -1,7 +1,9 @@
 package org.teamblueridge.status;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,12 +27,22 @@ public class HelloFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_hello, container, false);
 
+        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Getting status...", true);
+        dialog.show();
+
         thread.start();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                dialog.dismiss();
+            }
+        }, 3000);
 
         return rootView;
     }
 
-    Thread thread = new Thread(new Runnable(){
+    Thread thread = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -40,16 +52,13 @@ public class HelloFragment extends Fragment {
                 urlConnection.setDoOutput(true);
                 urlConnection.connect();
                 File SDCardRoot = Environment.getExternalStorageDirectory();
-                File file = new File(SDCardRoot,"tbrstatus.txt");
+                File file = new File(SDCardRoot, "tbrstatus.txt");
                 FileOutputStream fileOutput = new FileOutputStream(file);
                 InputStream inputStream = urlConnection.getInputStream();
-                int totalSize = urlConnection.getContentLength();
-                int downloadedSize = 0;
                 byte[] buffer = new byte[1024];
-                int bufferLength = 0; //used to store a temporary size of the buffer
-                while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
+                int bufferLength;
+                while ((bufferLength = inputStream.read(buffer)) > 0) {
                     fileOutput.write(buffer, 0, bufferLength);
-                    downloadedSize += bufferLength;
                 }
                 fileOutput.close();
             } catch (MalformedURLException e) {
