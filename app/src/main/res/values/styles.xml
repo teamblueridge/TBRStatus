@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@color/grey50</item>
+        <item name="colorPrimary">@color/teal500</item>
+        <item name="colorPrimaryDark">@color/teal700</item>
+        <item name="colorAccent">@color/reda200</item>
+    </style>
+</resources>
