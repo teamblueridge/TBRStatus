@@ -60,7 +60,6 @@ public class StatusFragment extends Fragment {
         JSONObject JSONObject = null;
         try {
             InputStream inputStream = new FileInputStream(HelloFragment.file);
-            //InputStream inputStream = getActivity().getAssets().open(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + filename);
             int sizeOfJSONFile = inputStream.available();
             byte[] bytes = new byte[sizeOfJSONFile];
             inputStream.read(bytes);

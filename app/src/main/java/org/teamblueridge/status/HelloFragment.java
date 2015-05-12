@@ -29,10 +29,10 @@ public class HelloFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_hello, container, false);
 
+        thread.start();
+
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Getting status...", true);
         dialog.show();
-
-        thread.start();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
