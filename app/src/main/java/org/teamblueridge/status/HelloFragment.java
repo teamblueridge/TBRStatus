@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +18,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class HelloFragment extends Fragment {
+
+    static File SDCardRoot = Environment.getExternalStorageDirectory();
+    static File file = new File(SDCardRoot, "tbrstatus.json");
 
     public HelloFragment() {
     }
@@ -46,13 +48,11 @@ public class HelloFragment extends Fragment {
         @Override
         public void run() {
             try {
-                URL url = new URL("https://raw.githubusercontent.com/teamblueridge/TBRStatus/master/tbrstatus.txt");
+                URL url = new URL("https://raw.githubusercontent.com/teamblueridge/TBRStatus/master/tbrstatus.json");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setDoOutput(true);
                 urlConnection.connect();
-                File SDCardRoot = Environment.getExternalStorageDirectory();
-                File file = new File(SDCardRoot, "tbrstatus.txt");
                 FileOutputStream fileOutput = new FileOutputStream(file);
                 InputStream inputStream = urlConnection.getInputStream();
                 byte[] buffer = new byte[1024];

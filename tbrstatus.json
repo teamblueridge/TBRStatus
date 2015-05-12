@@ -1,0 +1,12 @@
+{
+    "Status": {
+        "main": "Working as expected",
+        "paste": "Working as expected",
+        "wiki": "Working as expected",
+        "gerrit": "Working as expected",
+        "projects": "Working as expected",
+        "jenkins": "Working as expected",
+        "fserver": "Working as expected",
+        "bb": "Working as expected"
+    }
+}
