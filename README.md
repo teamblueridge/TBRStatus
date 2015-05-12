@@ -4,18 +4,7 @@ TBR Status is a small, simple app which tells the status of Team BlueRidge's ser
 
 To update service status
 ----------------
-The app fetches the [tbrstatus.txt file](https://github.com/teamblueridge/TBRStatus/blob/master/tbrstatus.txt) and then sets the status according to line of file.
-
-* Line 1 corresponds to Main site
-* Line 2 corresponds to Paste
-* Line 3 corresponds to Wiki
-* Line 4 corresponds to Gerrit
-* Line 5 corresponds to Projects
-* Line 6 corresponds to Jenkins
-* Line 7 corresponds to File Server
-* Line 8 corresponds to Buildbox
-
-So in any case, the status of a service changes, corresponding line should be changed.
+The app uses [tbrstatus.json](https://github.com/teamblueridge/TBRStatus/blob/master/tbrstatus.json) to get the status. So when status of a service is changed, corresponding JSONObject should be changed.
 
 License
 ----------------
