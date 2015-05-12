@@ -18,7 +18,6 @@ import java.io.InputStream;
 public class StatusFragment extends Fragment {
 
     View rootView;
-    String filename = "tbrstatus.json";
 
     public StatusFragment() {
     }
@@ -36,11 +35,10 @@ public class StatusFragment extends Fragment {
         final TextView fserver = (TextView) rootView.findViewById(R.id.file_server1);
         final TextView bb = (TextView) rootView.findViewById(R.id.bb1);
 
+
+        if (HelloFragment.file.length() != 0) {
             JSONObject parent = parseJSONData();
-
-            if (HelloFragment.file.length() != 0) {
-
-                try {
+            try {
                 main.setText(parent.getJSONObject("Status").getString("main"));
                 paste.setText(parent.getJSONObject("Status").getString("paste"));
                 wiki.setText(parent.getJSONObject("Status").getString("wiki"));
@@ -49,10 +47,10 @@ public class StatusFragment extends Fragment {
                 jenkins.setText(parent.getJSONObject("Status").getString("jenkins"));
                 fserver.setText(parent.getJSONObject("Status").getString("fserver"));
                 bb.setText(parent.getJSONObject("Status").getString("bb"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+        }
 
         return rootView;
     }
@@ -72,8 +70,7 @@ public class StatusFragment extends Fragment {
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
-        }
-        catch (JSONException x) {
+        } catch (JSONException x) {
             x.printStackTrace();
             return null;
         }
