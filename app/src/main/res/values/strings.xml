@@ -2,6 +2,7 @@
     <string name="app_name">TBR Status</string>
     <string name="hello_world">TBR Services Status</string>
     <string name="page1">Main page</string>
+    <string name="team">Team BlueRidge</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
