@@ -1,5 +1,10 @@
 package org.teamblueridge.status;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -52,6 +57,18 @@ public class StatusFragment extends Fragment {
             }
         }
 
+        if (!isOnline()) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("No internet connection")
+                    .setMessage("Make sure you are connected to internet to update status")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .show();
+        }
+
         return rootView;
     }
 
@@ -60,6 +77,7 @@ public class StatusFragment extends Fragment {
         JSONObject JSONObject = null;
         try {
             InputStream inputStream = new FileInputStream(HelloFragment.file);
+
             int sizeOfJSONFile = inputStream.available();
             byte[] bytes = new byte[sizeOfJSONFile];
             inputStream.read(bytes);
@@ -74,5 +92,12 @@ public class StatusFragment extends Fragment {
             return null;
         }
         return JSONObject;
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 };
