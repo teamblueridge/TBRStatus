@@ -48,7 +48,7 @@ public class HelloFragment extends Fragment {
         @Override
         public void run() {
             try {
-                URL url = new URL("https://raw.githubusercontent.com/teamblueridge/TBRStatus/master/tbrstatus.json");
+                URL url = new URL("https://status.teamblueridge.org/tbrstatus.json");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setDoOutput(true);
